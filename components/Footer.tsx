@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
 import { PHONE_NUMBER, EMAIL } from '../constants';
 
@@ -40,6 +41,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-between text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">
             <p>&copy; {new Date().getFullYear()} Pepple Pros Home Services</p>
             <div className="flex space-x-8 mt-4 md:mt-0">
+              <Link to="/areas" className="hover:text-white transition-colors">Service Areas</Link>
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
               <a href="#" className="hover:text-white transition-colors">Terms</a>
             </div>

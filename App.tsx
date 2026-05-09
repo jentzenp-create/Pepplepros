@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Home } from './components/Home';
 import { ServicePage } from './components/ServicePage';
+import { AreasPage } from './components/AreasPage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -37,6 +38,7 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/areas" element={<AreasPage />} />
             <Route path="/services/:slug" element={<ServicePage />} />
           </Routes>
         </main>
