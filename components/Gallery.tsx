@@ -31,6 +31,14 @@ export const Gallery: React.FC = () => {
     const [activeImage, setActiveImage] = useState(0);
     const project = projects[activeProject];
 
+    const nextImage = () => {
+        setActiveImage((prev) => (prev === project.images.length - 1 ? 0 : prev + 1));
+    };
+
+    const prevImage = () => {
+        setActiveImage((prev) => (prev === 0 ? project.images.length - 1 : prev - 1));
+    };
+
     return (
         <section id="gallery" className="py-24 bg-[#F2F2F0]">
             <div className="max-w-7xl mx-auto px-6">
@@ -50,18 +58,33 @@ export const Gallery: React.FC = () => {
                 {/* Gallery Display */}
                 <div className="max-w-4xl mx-auto">
                     {/* Main Image */}
-                    <div className="relative rounded-lg overflow-hidden shadow-2xl mb-6 bg-charcoal aspect-[4/3]">
+                    <div className="relative rounded-lg overflow-hidden shadow-2xl mb-6 bg-charcoal aspect-[4/3] group">
                         <img
                             src={project.images[activeImage].src}
                             alt={`${project.title} - ${project.images[activeImage].label}`}
                             className="w-full h-full object-cover transition-opacity duration-500"
                         />
-                        {/* Label Badge */}
-                        <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
-                            <span className="text-sm font-semibold tracking-wide text-charcoal">
-                                {project.images[activeImage].label}
-                            </span>
-                        </div>
+                        
+                        {/* Navigation Arrows */}
+                        <button
+                            onClick={prevImage}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-charcoal"
+                            aria-label="Previous image"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-charcoal"
+                            aria-label="Next image"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+
                         {/* Image Counter */}
                         <div className="absolute top-6 right-6 bg-charcoal/70 backdrop-blur-sm px-4 py-1.5 rounded-full">
                             <span className="text-xs font-medium tracking-wider text-white">
@@ -87,11 +110,6 @@ export const Gallery: React.FC = () => {
                                         alt={img.label}
                                         className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute bottom-0 inset-x-0 bg-charcoal/70 py-0.5">
-                                        <span className="text-[8px] font-bold tracking-wider text-white uppercase">
-                                            {img.label}
-                                        </span>
-                                    </div>
                                 </button>
                             ))}
                         </div>
