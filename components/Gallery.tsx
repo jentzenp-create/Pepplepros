@@ -9,10 +9,19 @@ interface GalleryProject {
 
 const projects: GalleryProject[] = [
     {
-        title: 'Mudroom Renovation',
-        description: 'Complete mudroom transformation with custom board and batten wainscoting, painted cabinetry, and sunflower wallpaper accent.',
+        title: 'Recent Projects',
+        description: 'A selection of our latest transformations, showing the quality and care we bring to every home.',
         images: [
-            { src: '/components/gallery-1.png', label: 'During' },
+            { src: '/job-photos/IMG_6459.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6457.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6373.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6427.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6143.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6302.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6479.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6480.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6481.JPEG', label: 'Project Photo' },
+            { src: '/job-photos/IMG_6536.JPEG', label: 'Project Photo' },
         ],
     },
 ];
@@ -63,12 +72,12 @@ export const Gallery: React.FC = () => {
 
                     {/* Thumbnails */}
                     {project.images.length > 1 && (
-                        <div className="flex gap-3 justify-center">
+                        <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:justify-center">
                             {project.images.map((img, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setActiveImage(index)}
-                                    className={`relative w-24 h-24 rounded-md overflow-hidden transition-all duration-300 ${activeImage === index
+                                    className={`relative w-24 h-24 flex-shrink-0 snap-center rounded-md overflow-hidden transition-all duration-300 ${activeImage === index
                                             ? 'ring-2 ring-charcoal ring-offset-2 scale-105'
                                             : 'opacity-60 hover:opacity-90'
                                         }`}

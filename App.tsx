@@ -1,44 +1,48 @@
-
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { ValueProps } from './components/ValueProps';
-import { Services } from './components/Services';
-import { Testimonials } from './components/Testimonials';
-import { Gallery } from './components/Gallery';
 import { Footer } from './components/Footer';
+import { Home } from './components/Home';
+import { ServicePage } from './components/ServicePage';
 
 const App: React.FC = () => {
   useEffect(() => {
     // Smooth scroll behavior for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId) {
-          const target = document.querySelector(targetId);
-          if (target) {
-            target.scrollIntoView({
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLAnchorElement;
+      if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('/#')) {
+        const targetId = target.getAttribute('href')?.substring(1);
+        if (targetId && window.location.pathname === '/') {
+          e.preventDefault();
+          const element = document.querySelector(targetId);
+          if (element) {
+            element.scrollIntoView({
               behavior: 'smooth'
             });
+            // Update URL without jump
+            window.history.pushState(null, '', `/${targetId}`);
           }
         }
-      });
-    });
+      }
+    };
+    
+    document.addEventListener('click', handleScroll);
+    return () => document.removeEventListener('click', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen selection:bg-charcoal selection:text-white">
-      <Header />
-      <main>
-        <Hero />
-        <ValueProps />
-        <Services />
-        <Gallery />
-        <Testimonials />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen selection:bg-charcoal selection:text-white">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services/:slug" element={<ServicePage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
