@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/components/hero-image.jpg"
+          src={HERO_IMAGE_URL}
           alt="Elegant modern living room with dark blue walls and herringbone fireplace"
           className="w-full h-full object-cover"
         />

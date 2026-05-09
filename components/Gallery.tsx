@@ -62,13 +62,14 @@ export const Gallery: React.FC = () => {
                         <img
                             src={project.images[activeImage].src}
                             alt={`${project.title} - ${project.images[activeImage].label}`}
+                            loading="lazy"
                             className="w-full h-full object-cover transition-opacity duration-500"
                         />
                         
                         {/* Navigation Arrows */}
                         <button
                             onClick={prevImage}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-charcoal"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-charcoal"
                             aria-label="Previous image"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -77,7 +78,7 @@ export const Gallery: React.FC = () => {
                         </button>
                         <button
                             onClick={nextImage}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-charcoal"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal p-2 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-charcoal"
                             aria-label="Next image"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -108,6 +109,7 @@ export const Gallery: React.FC = () => {
                                     <img
                                         src={img.src}
                                         alt={img.label}
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
                                     />
                                 </button>
